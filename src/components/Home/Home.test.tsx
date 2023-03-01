@@ -1,8 +1,9 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vitest } from "vitest";
 import { Patient } from "../../types/Patient";
 import { Home } from "./Home";
+import userEvent from "@testing-library/user-event";
 
 vitest.mock("react-router-dom", () => {
   const reactRouterDom = vitest.importActual("react-router-dom");
@@ -56,13 +57,19 @@ describe("[Component] Home", () => {
     window.getComputedStyle = (elt) => getComputedStyle(elt);
   });
 
-  describe("Home", () => {
-    it("should display the title", async () => {
+  describe("Search", () => {
+    it("should filter the list of displayed patients when the user types something in the search bar", async () => {
       const homeComponent = render(<Home />);
 
-      const title = homeComponent.getByText("Welcome to Cardiokla!");
+      const searchBar = homeComponent.getByTestId("search-bar");
 
-      expect(title).toBeInTheDocument();
+      await act(() => userEvent.type(searchBar, "Crampon"));
+
+      const maxime = homeComponent.queryByText("Maxime Crampon");
+      expect(maxime).toBeInTheDocument();
+
+      const raphael = homeComponent.queryByText("Raphaël Dhôte");
+      expect(raphael).not.toBeInTheDocument();
     });
   });
 });
