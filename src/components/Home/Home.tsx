@@ -63,7 +63,13 @@ export const Home: FunctionComponent = () => {
           placeholder="Recherchez un patient"
         />
       </div>
-      <Table dataSource={dataSource} columns={columns} />
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        onRow={(patient) => ({
+          onClick: () => navigate(`/patient/${patient.id}`),
+        })}
+      />
     </div>
   );
 };
