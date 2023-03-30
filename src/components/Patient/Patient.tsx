@@ -5,7 +5,10 @@ import "./Patient.css";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { usePatients } from "../../hooks/usePatients";
 import { usePatientMedicalData } from "../../hooks/usePatientMedicalData";
-import { CardiacFrequencyData } from "../../types/MedicalData";
+import {
+  CardiacFrequencyData,
+  PatientMedicalData,
+} from "../../types/MedicalData";
 
 export const Patient = () => {
   const { id } = useParams();
@@ -45,7 +48,11 @@ export const Patient = () => {
         </div>
         {medicalData !== null && (
           <div className="chart-container">
-            <LineChart width={1000} height={500} data={medicalData}>
+            <LineChart
+              width={1000}
+              height={500}
+              data={medicalData.cardiacFrequency.data}
+            >
               <Line type="monotone" dataKey="value" stroke="#8884d8" />
               <CartesianGrid stroke="#ccc" />
               <XAxis dataKey={getDisplayedDate}>
