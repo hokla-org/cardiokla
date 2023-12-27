@@ -2,7 +2,7 @@ import { PatientMedicalData } from "../types/MedicalData";
 import { usePatientsMedicalData } from "./usePatientsMedicalData";
 
 export const usePatientMedicalData = (
-  patientId: string
+  patientId: string,
 ): PatientMedicalData | null => {
   const patientsMedicalData = usePatientsMedicalData();
 

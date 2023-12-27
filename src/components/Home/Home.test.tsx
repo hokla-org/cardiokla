@@ -1,3 +1,4 @@
+import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vitest } from "vitest";
 import { Patient } from "../../types/Patient";
@@ -61,7 +62,7 @@ describe("[Component] Home", () => {
 
       const title = homeComponent.getByText("Welcome to Cardiokla!");
 
-      expect(title).to.toBeInTheDocument();
+      expect(title).toBeInTheDocument();
     });
   });
 });

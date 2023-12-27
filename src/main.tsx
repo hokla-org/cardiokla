@@ -32,6 +32,6 @@ if (rootElement !== null) {
       <ConfigProvider locale={frFR}>
         <RouterProvider router={router} />
       </ConfigProvider>
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 }
